@@ -1,6 +1,15 @@
 from models.base_model import BaseModel
 import peewee as pw
+from werkzeug.security import generate_password_hash
 
 
 class User(BaseModel):
-    name = pw.CharField(unique=False)
+    username = pw.CharField(unique=False)
+    password = pw.CharField()
+    email = pw.CharField(unique=True)
+
+    def validate(self):
+        if len(self.password) < 8:
+            self.errors.append('fsdff')
+        else:
+            self.password = generate_password_hash(self.password)

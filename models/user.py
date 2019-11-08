@@ -10,6 +10,6 @@ class User(BaseModel):
 
     def validate(self):
         if len(self.password) < 8:
-            self.errors.append('fsdff')
+            self.errors.append('Password must be more than 8 characters')
         else:
             self.password = generate_password_hash(self.password)

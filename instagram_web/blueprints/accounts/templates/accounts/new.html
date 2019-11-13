@@ -6,23 +6,23 @@
 <br>
 
 <div class="container">
-    <form action="{{ url_for('users.create') }}" method="POST" class="needs-validation" novalidate>
+    <form action="{{ url_for('accounts.signup') }}" method="POST" class="needs-validation" novalidate>
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
         <div class="col-md-6 mb-4">
-            <label for=" uname">Username:</label>
+            <label for="username">Username:</label>
             <input type="text" class="form-control" id="uname" placeholder="Enter your desired username" name="username"
                 required>
             <div class="valid-feedback">All good!</div>
             <div class="invalid-feedback">Please choose a username.</div>
         </div>
         <div class="col-md-6 mb-4">
-            <label for="uname">Email:</label>
+            <label for="email">Email:</label>
             <input type="text" class="form-control" id="email" placeholder="Enter your email" name="email" required>
             <div class="valid-feedback">All good!</div>
             <div class="invalid-feedback">Please enter a valid email.</div>
         </div>
         <div class="col-md-6 mb-4">
-            <label for="pwd">Password:</label>
+            <label for="password">Password:</label>
             <input type="password" pattern=".{8,}" class="form-control" id="pwd" placeholder="Enter your password"
                 name="password" required>
             <div class="valid-feedback">All good!</div>

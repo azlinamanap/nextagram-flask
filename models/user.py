@@ -16,3 +16,8 @@ class User(BaseModel, UserMixin):
             self.errors.append('Password must be more than 8 characters')
         else:
             self.password = generate_password_hash(self.password)
+
+
+class Pictures(BaseModel):
+    user = pw.ForeignKeyField(User, backref='pictures')
+    picture = pw.CharField(null=True)

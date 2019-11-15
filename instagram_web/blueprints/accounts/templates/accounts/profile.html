@@ -1,7 +1,27 @@
 {% extends '_layout.html' %}
 {% block content %}
 
-<h1>Welcome to your profile.</h1>
+<h1>{{user.username}}</h1>
+
+<img class="rounded-circle" style="width: 150px; height: 150px" src="{{user.profile_image_path}}" />
+
+{% if current_user.is_authenticated and user.id == current_user.id %}
+
+<a href="accounts/edit" style="color: black; text-decoration: none">Edit</a>
+
+<a href="accounts/logout" style="color: black; text-decoration: none">Logout</a>
+
+<hr>
+
+<p style="text-align: center;">Your pictures will go here!</p>
+
+<a href="pictures/upload_image" style="color: black; text-decoration: none">Upload</a>
+
+
+
+
+{% endif %}
+
 
 
 {% endblock %}

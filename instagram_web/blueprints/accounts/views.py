@@ -6,6 +6,7 @@ import os
 import boto3
 import botocore
 from app import s3
+import uuid
 
 accounts_blueprint = Blueprint('accounts',
                                __name__,
@@ -148,6 +149,11 @@ def update():
 @login_required
 def uploaded():
     user_file = request.files.get('user_file')
+    # to scramble filename
+    randomString = uuid.uuid4().hex
+    randomString = randomString.lower()[0:16]
+    user_file.filename = randomString + '.png'
+    #
     try:
         s3.upload_fileobj(
             user_file,

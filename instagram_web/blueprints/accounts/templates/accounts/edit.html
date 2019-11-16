@@ -38,7 +38,11 @@
 <div class="row">
     <div class="col-md-12 lead">
         Edit your account details
+        <a href="{{ url_for('show', username=current_user.username) }}"
+            style="color: black; text-decoration: none; text-align: right;">Back
+            to profile</a>
         <hr>
+
     </div>
 </div>
 

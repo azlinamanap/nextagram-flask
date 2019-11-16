@@ -151,7 +151,7 @@ def uploaded():
     user_file = request.files.get('user_file')
     # to scramble filename
     randomString = uuid.uuid4().hex
-    randomString = randomString.lower()[0:16]
+    randomString = randomString[0:11]
     user_file.filename = randomString + '.png'
     #
     try:

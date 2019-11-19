@@ -21,6 +21,7 @@ def uploadnew():
 @pictures_blueprint.route('/upload_image', methods=['POST'])
 def create():
     picture = request.files.get('picture')
+    caption = request.form.get('caption')
     randomString = uuid.uuid4().hex
     randomString = randomString[0:11]
     picture.filename = randomString + '.png'

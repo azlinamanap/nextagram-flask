@@ -6,13 +6,6 @@
         background-color: #eaeaea;
     }
 
-    img.avatar,
-    div.avatar {
-        border: 1px solid #eee;
-        width: 122px;
-        height: 122px;
-    }
-
     .btn-file {
         position: relative;
         overflow: hidden;
@@ -50,11 +43,15 @@
     <img class="rounded-circle" style="width: 150px; height: 150px" src="{{current_user.profile_image_path}}" />
 </div>
 
+<form action="{{ url_for('accounts.removed') }}" method='POST' enctype="multipart/form-data">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+    <button class="btn btn-success" type="submit">Remove profile picture</button>
+</form>
+
 <form action="{{ url_for('accounts.uploaded') }}" method='POST' enctype="multipart/form-data">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-    <input class="btn btn-light" type="file" name="user_file" accept="image/*" />
-    <!-- <span class="btn btn-link btn-file">Edit avatar <input name="user_file" type="file" accept="image/*" /></span> -->
-    <button class="btn btn-success" type="submit">Edit picture</button>
+    <span class="btn btn-link btn-file" style="text-decoration: none">Edit avatar <input name="user_file" type="file"
+            accept="image/*" onchange="form.submit()" /></span>
 </form>
 
 <form action="{{ url_for('accounts.update') }}" method='POST'>

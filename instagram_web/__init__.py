@@ -6,6 +6,7 @@ from werkzeug.utils import secure_filename
 from models.user import User, Pictures
 from instagram_web.blueprints.accounts.views import accounts_blueprint
 from instagram_web.blueprints.pictures.views import pictures_blueprint
+from instagram_web.blueprints.posts.views import posts_blueprint
 from flask_assets import Environment, Bundle
 from .util.assets import bundles
 
@@ -15,6 +16,8 @@ assets.register(bundles)
 app.register_blueprint(accounts_blueprint, url_prefix="/accounts")
 
 app.register_blueprint(pictures_blueprint, url_prefix="/pictures")
+
+app.register_blueprint(posts_blueprint, url_prefix="/p")
 
 
 # @app.before_request

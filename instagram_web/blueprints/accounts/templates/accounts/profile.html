@@ -1,27 +1,54 @@
 {% extends '_layout.html' %}
+
+{% block header %}
+
+{% if current_user.is_authenticated %}
+<span>
+    Instagram
+</span>
+<a class="navbar-brand" href="accounts/logout">
+    <img src="https://image.flaticon.com/icons/svg/130/130925.svg" width="30" height="30" alt="Logout">
+</a>
+{% endif %}
+
+{% endblock %}
+
 {% block content %}
 
-<h1>{{user.username}}</h1>
+<div style="display: flex; padding: 20px">
+    <img class="rounded-circle" style="width: 150px; height: 150px" src="{{user.profile_image_path}}" />
 
-<img class="rounded-circle" style="width: 150px; height: 150px" src="{{user.profile_image_path}}" />
+    <div>
+        <h1 style="position: relative; left: 30vw">{{user.username}}</h1>
+        {% if current_user.is_authenticated and user.id == current_user.id %}
 
-{% if current_user.is_authenticated and user.id == current_user.id %}
 
-<a href="accounts/edit" style="color: black; text-decoration: none">Edit</a>
+        <a class="btn btn-primary" href="accounts/edit"
+            style="text-decoration: none; position: relative; left: 30vw">Edit
+            Profile</a>
+        {% endif %}
+    </div>
+</div>
 
-<a href="accounts/logout" style="color: black; text-decoration: none">Logout</a>
-
+<br>
 <hr>
 
 <p style="text-align: center;">Your pictures will go here!</p>
 
-<a href="pictures/upload_image" style="color: black; text-decoration: none">Upload</a>
+<div style="display: flex; flex-wrap: wrap; padding-left: 5vw">
+    {% for pictures in user.display %}
+    <a href="{{ url_for('posts.pagefor', picture=pictures.picture[0:11]) }}">
+        <img style="width: 28vw; height: 28vw; margin: 1vw" type="image" src="{{pictures.post}}" /></a>
+    {% endfor %}
+</div>
 
+{% if current_user.is_authenticated and user.id == current_user.id %}
+<div style="text-align: center;">
+    <a href="pictures/upload_image" style="color: black; text-decoration: none">Upload</a>
+</div>
 
-
-
+<br>
 {% endif %}
-
 
 
 {% endblock %}

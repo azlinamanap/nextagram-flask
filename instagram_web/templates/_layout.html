@@ -15,8 +15,15 @@
   <script type="text/javascript" src="{{ ASSET_URL }}"></script>
   {% endassets %}
 
-  {% block header %}
-  {% endblock %}
+
+  <nav class="navbar fixed-top navbar-light bg-light">
+    <a class="navbar-brand" href="/">
+      <img src="https://image.flaticon.com/icons/svg/263/263115.svg" width="30" height="30" alt="Home">
+    </a>
+    {% block header %}
+    {% endblock %}
+  </nav>
+
 
   <title>
     {% block title %}
@@ -36,7 +43,7 @@
 
 </head>
 
-<body>
+<body style="margin-top: 60px">
   {% block content %}
   {% endblock %}
   <footer>

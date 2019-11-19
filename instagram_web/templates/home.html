@@ -1,15 +1,24 @@
 {% extends "_layout.html" %}
 
 {% block title %}
-Home -
+Home •
 {% endblock %}
 
 {% block header %}
+
+{% if current_user.is_authenticated %}
+<span>
+    Instagram
+</span>
+<a class="navbar-brand" href="{{ url_for('show', username=current_user.username) }}">
+    <img src="https://image.flaticon.com/icons/svg/1077/1077063.svg" width="30" height="30" alt="Profile">
+</a>
+{% endif %}
+
 {% endblock %}
 
 {% block content %}
 
-<h1>Homepage</h1>
 {% if not current_user.is_authenticated %}
 
 <a href="accounts/signup" style="color: black; text-decoration: none">Signup</a>
@@ -24,9 +33,6 @@ Home -
 {% if current_user.is_authenticated %}
 
 <a href="accounts/logout" style="color: black; text-decoration: none">Logout</a>
-
-<a href="{{ url_for('show', username=current_user.username) }}" style="color: black; text-decoration: none">Your
-    page</a>
 
 <div style="text-align: center">
     <h1>Welcome to your feed.</h1>

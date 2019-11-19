@@ -171,3 +171,15 @@ def uploaded():
         flash('Profile picture upload unsuccessful.')
 
     return redirect(url_for('accounts.edit'))
+
+# DELETE PROFILE PIC
+
+
+@accounts_blueprint.route('/edit/remove', methods=['POST'])
+@login_required
+def removed():
+    blank = ""
+    User.update(profile_picture=blank).where(
+        User.id == current_user.id).execute()
+
+    return redirect(url_for('accounts.edit'))

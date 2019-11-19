@@ -14,6 +14,10 @@ class User(BaseModel, UserMixin):
     profile_picture = pw.TextField(null=True)
 
     @hybrid_property
+    def display(self):
+        return [x for x in Pictures.select().where(Pictures.user_id == self.id).order_by(Pictures.created_at.desc())]
+
+    @hybrid_property
     def profile_image_path(self):
         if self.profile_picture:
             return f'https://{os.environ.get("S3_BUCKET")}.s3-eu-west-2.amazonaws.com/' + self.profile_picture
@@ -30,10 +34,15 @@ class User(BaseModel, UserMixin):
 class Pictures(BaseModel):
     user = pw.ForeignKeyField(User, backref='pictures')
     picture = pw.CharField(null=True)
+    caption = pw.TextField(null=True)
 
     @hybrid_property
     def post(self):
         if self.picture:
             return f'https://{os.environ.get("S3_BUCKET")}.s3-eu-west-2.amazonaws.com/' + self.picture
         else:
-            return 'Success'
+            return 'Unable to create new post'
+
+    @hybrid_property
+    def post_url(self):
+        return f'https://{os.environ.get("S3_BUCKET")}.s3-eu-west-2.amazonaws.com/' + self.picture

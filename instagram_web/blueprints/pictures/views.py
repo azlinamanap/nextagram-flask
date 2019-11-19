@@ -35,7 +35,8 @@ def create():
                 "ContentType": picture.content_type
             }
         )
-        Pictures(picture=picture.filename, user=current_user.id).save()
+        Pictures(picture=picture.filename,
+                 user=current_user.id, caption=caption).save()
     except:
         flash('Upload unsuccessful')
 

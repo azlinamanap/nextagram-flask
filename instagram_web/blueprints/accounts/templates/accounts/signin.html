@@ -1,52 +1,59 @@
 {% extends '_layout.html' %}
 {% block content %}
-<h1>Sign in here.</h1>
 
-<!-- Default form login -->
-<form class="text-center border border-light p-5" action="{{ url_for('accounts.signin') }}" method='POST'>
-
-    <p class=" h4 mb-4">Sign in</p>
-
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-    <!-- Email -->
-    <div class="col-xs-6 col-xs-offset-3">
-        <input name="username" type="username" id="defaultLoginFormEmail" class="form-control col-md-4 mb-4"
-            placeholder="Username">
+<div class="row">
+    <div class="text-center col-md-6">
+        <br><br><br><br><br><br>
+        <p>Welcome to insta.</p>
+        <p>Please sign in, or sign up for an account.</p>
     </div>
+    <div class="card text-center col-md-5" style="margin: 0 30px">
+        <form class="p-5" action="{{ url_for('accounts.signin') }}" method='POST'>
 
-    <!-- Password -->
-    <div class="col-xs-6 col-xs-offset-3">
-        <input name="password" type="password" id="defaultLoginFormPassword" class="form-control col-md-4 mb-4"
-            placeholder="Password">
-    </div>
+            <p class="h4 mb-5">Sign in</p>
 
-    <div class="d-flex justify-content-around">
-        <div>
-            <!-- Remember me -->
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
-                <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+            <!-- Email -->
+            <div class="d-flex justify-content-around">
+                <input name="username" type="username" id="defaultLoginFormEmail" class="form-control col-md-8 mb-4"
+                    placeholder="Username">
             </div>
-        </div>
+
+            <!-- Password -->
+            <div class="d-flex justify-content-around">
+                <input name="password" type="password" id="defaultLoginFormPassword" class="form-control col-md-8 mb-4"
+                    placeholder="Password">
+            </div>
+
+            <div class="d-flex justify-content-around mb-4">
+                <!-- Remember me -->
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+                    <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+                </div>
+            </div>
+
+            <!-- Sign in button -->
+            <button class="btn btn-info mb-4" type="submit">Sign
+                in</button>
+
+            <!-- Register -->
+            <p>Not a member?
+                <a href="signup">Signup now ^_^</a>
+            </p>
+
+            <!-- Social login -->
+            <p>or sign in with:</p>
+
+            <a href="#" class="mx-2" role="button"><i class="fab fa-facebook-f light-blue-text"></i></a>
+            <a href="#" class="mx-2" role="button"><i class="fab fa-twitter light-blue-text"></i></a>
+            <a href="#" class="mx-2" role="button"><i class="fab fa-linkedin-in light-blue-text"></i></a>
+            <a href="#" class="mx-2" role="button"><i class="fab fa-github light-blue-text"></i></a>
+
+        </form>
+        <!-- Default form login -->
     </div>
+</div>
 
-    <!-- Sign in button -->
-    <button class="btn btn-info btn-block col-md-4 my-4" type="submit">Sign in</button>
-
-    <!-- Register -->
-    <p>Not a member?
-        <a href="signup">Signup now ^_^</a>
-    </p>
-
-    <!-- Social login -->
-    <p>or sign in with:</p>
-
-    <a href="#" class="mx-2" role="button"><i class="fab fa-facebook-f light-blue-text"></i></a>
-    <a href="#" class="mx-2" role="button"><i class="fab fa-twitter light-blue-text"></i></a>
-    <a href="#" class="mx-2" role="button"><i class="fab fa-linkedin-in light-blue-text"></i></a>
-    <a href="#" class="mx-2" role="button"><i class="fab fa-github light-blue-text"></i></a>
-
-</form>
-<!-- Default form login -->
 
 {% endblock %}

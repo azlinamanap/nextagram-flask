@@ -47,7 +47,6 @@ def signup():
 
     if new_user.save():
         login_user(new_user)
-        flash('Successfully signed up for your account. You are now logged in')
         return redirect(url_for('home'))
     else:
         return render_template('accounts/new.html', username=request.form.get('username'), email=request.form.get('email'))
@@ -59,7 +58,6 @@ def signup():
 @login_required
 def logout():
     logout_user()
-    flash('Successfully logged out.', 'info')
     return redirect(url_for('home'))
 
 # SIGNIN
@@ -84,7 +82,6 @@ def signedin():
         check_pass = check_password_hash(user.password, password)
         if check_pass:
             login_user(user)
-            flash('Login successful.')
             return redirect(url_for('home'))
         else:
             flash('Invalid password. Please try again.', 'danger')

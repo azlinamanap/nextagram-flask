@@ -33,12 +33,11 @@
 <br>
 <hr>
 
-<p style="text-align: center;">Your pictures will go here!</p>
-
 <div style="display: flex; flex-wrap: wrap; padding-left: 5vw">
     {% for pictures in user.display %}
     <a href="{{ url_for('posts.pagefor', picture=pictures.picture[0:11]) }}">
-        <img style="width: 28vw; height: 28vw; margin: 1vw" type="image" src="{{pictures.post}}" /></a>
+        <img style="width: 28vw; height: 28vw; margin: 1vw; object-fit:cover" type="image"
+            src="{{pictures.post}}" /></a>
     {% endfor %}
 </div>
 
@@ -49,6 +48,8 @@
 
 <br>
 {% endif %}
+
+
 
 
 {% endblock %}

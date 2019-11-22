@@ -3,21 +3,25 @@
 {% block content %}
 
 <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-1">
 
     </div>
-    <div class="card-group col-md-8">
+    <div class="card-group col-md-10">
         <div class="card col-md-7 p-0" style="min-width: 300px">
             <img style="width:100%" src="{{ pictures.post }}" />
         </div>
-        <div class="card col-md-5">
-            <div class="card-title">
-                <a href="{{url_for('show', username=username) }}">
-                    <h5>{{ username }}</h5>
-                </a>
+        <div class="card col-md-5 p-0">
+            <div class="card-body" style="display:flex">
+                <div>
+                    <img src="{{ user.profile_image_path }}" class="rounded-circle" style="width: 50px; height: 50px">
+                </div>
+                <div class="p-2">
+                    <a href="{{url_for('show', username=user.username) }}">{{ user.username }}</a>
+                    <span class="card-text">{{ pictures.caption }}</span>
+                </div>
             </div>
             <div class="card-body">
-                <p class="card-text">{{ pictures.caption }}</p>
+
             </div>
         </div>
     </div>

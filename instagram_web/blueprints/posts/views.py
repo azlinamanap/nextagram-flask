@@ -14,9 +14,9 @@ posts_blueprint = Blueprint('posts', __name__, template_folder='templates')
 def pagefor(picture):
 
     pic = Pictures.get_or_none(Pictures.picture == picture+'.png')
-    username = User.get(User.id == pic.user_id).username
+    user = User.get_or_none(User.id == pic.user_id)
 
     if pic:
-        return render_template('posts/post.html', pictures=pic, username=username)
+        return render_template('posts/post.html', pictures=pic, user=user)
     else:
         return 'No such post available'

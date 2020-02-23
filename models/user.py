@@ -3,7 +3,7 @@ import peewee as pw
 from werkzeug.security import generate_password_hash
 from flask_login import UserMixin, current_user
 from flask import request
-from playhouse.hybrid import hybrid_property
+from playhouse.hybrid import hybrid_property, hybrid_method
 import os
 
 
@@ -12,6 +12,12 @@ class User(BaseModel, UserMixin):
     password = pw.CharField()
     email = pw.CharField(unique=True)
     profile_picture = pw.TextField(null=True)
+    is_private = pw.BooleanField(default=False)
+
+    @hybrid_property
+    def following(self):
+        from models.follows import Follows
+        return [x.idol for x in Follows.select().where((Follows.fan_id == self.id) & (Follows.is_approved == True))]
 
     @hybrid_property
     def display(self):

@@ -30,6 +30,18 @@
     </div>
 </div>
 
+{% if current_user.is_authenticated and user.id != current_user.id %}
+<a href="{{ url_for('follows.follow', username=user.username) }}" class="btn btn-info">
+    {% if user in current_user.following %}
+    Following
+    {% elif user in current_user.following_request %}
+    Pending
+    {% else %}
+    Follow
+    {% endif %}
+</a>
+{% endif %}
+
 <br>
 <hr>
 

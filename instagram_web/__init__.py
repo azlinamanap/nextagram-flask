@@ -7,6 +7,7 @@ from models.user import User, Pictures
 from instagram_web.blueprints.accounts.views import accounts_blueprint
 from instagram_web.blueprints.pictures.views import pictures_blueprint
 from instagram_web.blueprints.posts.views import posts_blueprint
+from instagram_web.blueprints.follows.views import follows_blueprint
 from flask_assets import Environment, Bundle
 from .util.assets import bundles
 
@@ -18,6 +19,8 @@ app.register_blueprint(accounts_blueprint, url_prefix="/accounts")
 app.register_blueprint(pictures_blueprint, url_prefix="/pictures")
 
 app.register_blueprint(posts_blueprint, url_prefix="/p")
+
+app.register_blueprint(follows_blueprint, url_prefix="/follow")
 
 
 # @app.before_request

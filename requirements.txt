@@ -4,7 +4,7 @@ Babel==2.7.0
 blinker==1.4
 boto3==1.10.15
 botocore==1.13.15
-certifi==2018.11.29
+certifi==2022.12.7
 cffi==1.13.2
 Click==7.0
 colorama==0.4.1
